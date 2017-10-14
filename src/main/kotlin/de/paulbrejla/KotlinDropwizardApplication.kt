@@ -1,5 +1,6 @@
 package de.paulbrejla
 
+import de.paulbrejla.resources.HelloWorldResource
 import io.dropwizard.Application
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
@@ -16,7 +17,10 @@ class KotlinDropwizardApplication : Application<KotlinDropwizardConfiguration>()
 
     override fun run(configuration: KotlinDropwizardConfiguration,
                      environment: Environment) {
-        // TODO: implement application
+
+        val helloWorldResource : HelloWorldResource = HelloWorldResource(template = configuration.template, defaultName = configuration.defaultName )
+
+        environment.jersey().register(helloWorldResource)
     }
 
     companion object {

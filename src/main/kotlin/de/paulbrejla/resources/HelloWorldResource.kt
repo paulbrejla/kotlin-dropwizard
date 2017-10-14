@@ -19,8 +19,8 @@ class HelloWorldResource constructor(val template: String, val defaultName: Stri
 
     @GET
     @Timed
-    fun sayHello(@QueryParam("name") name: Optional<String>): Saying {
-        val value = String.format(template, name.orElse(defaultName))
-        return Saying(counter.incrementAndGet(), value)
+    fun sayHello(@QueryParam("name") name: String?): Saying {
+        val value = String.format(template, name)
+        return Saying(id = counter.incrementAndGet(), content =  value)
     }
 }
